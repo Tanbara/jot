@@ -50,22 +50,22 @@
   --bg-subtle:  #FAFAFA;
 
   /* Gray scale */
-  --gray-200: #DEDEDE;
-  --gray-500: #9D9D9D;
-  --gray-700: #5C5C5C;
-  --gray-900: #1B1B1B;
+  --gray-100: #DEDEDE;
+  --gray-200: #9D9D9D;
+  --gray-300: #5C5C5C;
+  --gray-400: #1B1B1B;
 
   /* Blue scale */
   --blue-100: #DBF5FF;
-  --blue-300: #93E2FF;
-  --blue-500: #4BCEFF;
-  --blue-600: #03BBFF;
+  --blue-200: #93E2FF;
+  --blue-300: #4BCEFF;
+  --blue-400: #03BBFF;
 
   /* Red scale */
   --red-100: #FDEFE4;
-  --red-300: #FD9EAF;
-  --red-500: #FB5E79;
-  --red-600: #FA1D44;
+  --red-200: #FD9EAF;
+  --red-300: #FB5E79;
+  --red-400: #FA1D44;
 
   /* ===== Spacing (rem based, 1rem = 16px) ===== */
   --space-4:   0.25rem; /* 4px  */
