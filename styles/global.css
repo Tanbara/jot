@@ -1,3 +1,170 @@
+/* Foundation → Application-wide styles, design tokens, and CSS resets. */
+
+
+/* =========================================================
+   Font Faces
+   ========================================================= */
+
+/* Inter (static) — bundled for reliability in MV3 */
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+000-5FF; /* basic Latin; widen if needed */
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+000-5FF;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+000-5FF;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/assets/fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+000-5FF;
+}
+
+/* =========================================================
+   Root Styles & Design Tokens
+   ========================================================= */
+
+:root {
+  /* ===== Colors ===== */
+  /* Background */
+  --bg-default: #FFFFFF;
+  --bg-subtle:  #FAFAFA;
+
+  /* Gray scale */
+  --gray-200: #DEDEDE;
+  --gray-500: #9D9D9D;
+  --gray-700: #5C5C5C;
+  --gray-900: #1B1B1B;
+
+  /* Blue scale */
+  --blue-100: #DBF5FF;
+  --blue-300: #93E2FF;
+  --blue-500: #4BCEFF;
+  --blue-600: #03BBFF;
+
+  /* Red scale */
+  --red-100: #FDEFE4;
+  --red-300: #FD9EAF;
+  --red-500: #FB5E79;
+  --red-600: #FA1D44;
+
+  /* ===== Spacing (rem based, 1rem = 16px) ===== */
+  --space-4:   0.25rem; /* 4px  */
+  --space-8:   0.5rem;  /* 8px  */
+  --space-12:  0.75rem; /* 12px */
+  --space-16:  1rem;    /* 16px */
+  --space-20:  1.25rem; /* 20px */
+  --space-24:  1.5rem;  /* 24px */
+  --space-32:  2rem;    /* 32px */
+  --space-40:  2.5rem;  /* 40px */
+  --space-48:  3rem;    /* 48px */
+  --space-64:  4rem;    /* 64px */
+  --space-80:  5rem;    /* 80px */
+  --space-96:  6rem;    /* 96px */
+  --space-128: 8rem;    /* 128px */
+
+  /* ===== Typography tokens ===== */
+  --font-family-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Button */
+  --btn-font-family: var(--font-family-sans);
+  --btn-font-size:   1rem;     /* 16px */
+  --btn-line-height: 1.25rem;  /* 20px */
+  --btn-font-weight: 600;
+
+  /* Paragraph */
+  --para-font-family: var(--font-family-sans);
+  --para-font-size:   1rem;    /* 16px */
+  --para-line-height: 1.5rem;  /* 24px */
+  --para-font-weight: 400;
+}
+
+/* =========================================================
+   CSS Reset + Boilerplate Overrides
+   ========================================================= */
+
+/* Box sizing & baseline reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default margins for headings & paragraphs */
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+/* Reset link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lists */
+ul, ol {
+  margin: 0;
+  padding-left: var(--space-24);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 
+  Utility: .visually-hidden (for a11y
+  Hides content visually while keeping it accessible to screen readers.
+  Useful for providing descriptive text for icons, buttons, or interactive elements
+  when no visible label is present. Do not use display:none or visibility:hidden
+  if the content should remain accessible.
+*/
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* VVVVV Old Old Old VVVVVV */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -5,6 +172,8 @@ html, body {
   height: 100%;
   position: relative; /* make body act like a positioning context */
 }
+
+
 
 #draggable {
   position: absolute;  /* relative to body */
