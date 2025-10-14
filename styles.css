@@ -1,4 +1,4 @@
-#note-sidebar {
+#outer-container {
   position: fixed;
   top: 100px;
   left: 0;
@@ -13,11 +13,14 @@
   gap: var(--space-24);
   padding: var(--space-24);
   overflow: hidden;
+  cursor: grab;
+}
+
+#outer-container:active {
+  cursor: grabbing;
 }
 
 .modal-header {
-  cursor: move; /* Needs to be applied to note-sidebar */
-  font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,25 +34,40 @@ width: 32px;
 height: 32px;
 align-items: center;
 border-radius: 100px;
-background-color: var(--bg-subtle);
-transition: scale .15s cubic-bezier(.4, 0, .2, 1), background-color .15s cubic-bezier(.4, 0, .2, 1);
+background-color: var(--gray-100);
+transition: transform .15s cubic-bezier(.4, 0, .2, 1), background-color .15s cubic-bezier(.4, 0, .2, 1);
 }
 
 .button-icon:hover {
-  background-color: var(--gray-100);
-  scale: .98;
+  background-color: var(--gray-200);
+}
+
+.button-icon:active {
+    transform: scale(.96);
 }
 
 .button-icon-group {
   display: flex;
+  /* vv removes cursor flash between grab and pointer vv */
+  cursor: pointer;
   flex-direction: row;
   gap: var(--space-8);
 }
 
+.svg-container {
+  width: 16px;
+  height: 16px;
+}
+
 .button-icon svg {
+  position: absolute;
   width: 16px;
   height: 16px;
   fill: var(--gray-900);
+}
+
+#expand-icon {
+  opacity: 0;
 }
 
 
