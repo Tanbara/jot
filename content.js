@@ -1,4 +1,4 @@
-if (!document.getElementById("note-sidebar")) {
+if (!document.getElementById("outer-container")) {
 
   function debounce(func, delay) {
     let timeout;
@@ -8,16 +8,21 @@ if (!document.getElementById("note-sidebar")) {
     };
   }
 
-  const sidebar = document.createElement("div");
-  sidebar.id = "note-sidebar";
-  sidebar.innerHTML = `
+  const outerContainer = document.createElement("div");
+  outerContainer.id = "outer-container";
+  outerContainer.innerHTML = `
     <div class="modal-header" id="note-header">
       <span>Notes</span>
       <div class="button-icon-group">
         <button class="button-icon" id="toggle-btn">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="svg-container">
+        <svg id="collapse-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M6 1V1.75V5C6 5.55229 5.55228 6 5 6H1.75H1V4.5H1.75H4.5V1.75V1H6ZM14.25 6H15V4.5H14.25H11.5V1.75V1H10V1.75V5C10 5.55228 10.4477 6 11 6H14.25ZM10 14.25V15H11.5V14.25V11.5H14.29H15.04V10H14.29H11C10.4477 10 10 10.4477 10 11V14.25ZM1.75 10H1V11.5H1.75H4.5V14.25V15H6V14.25V11C6 10.4477 5.55229 10 5 10H1.75Z" fill="#1B1B1B"/>
 </svg>
+<svg id="expand-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1 5.25V6H2.5V5.25V2.5H5.25H6V1H5.25H2C1.44772 1 1 1.44772 1 2V5.25ZM5.25 14.9994H6V13.4994H5.25H2.5V10.7494V9.99939H1V10.7494V13.9994C1 14.5517 1.44772 14.9994 2 14.9994H5.25ZM15 10V10.75V14C15 14.5523 14.5523 15 14 15H10.75H10V13.5H10.75H13.5V10.75V10H15ZM10.75 1H10V2.5H10.75H13.5V5.25V6H15V5.25V2C15 1.44772 14.5523 1 14 1H10.75Z" fill="#1B1B1B"/>
+</svg>
+        </div>
 
         </button>
         <button class="button-icon" id="close-btn">
@@ -38,10 +43,10 @@ if (!document.getElementById("note-sidebar")) {
       </div>
     </div>
   `;
-  document.body.appendChild(sidebar);
+  document.body.appendChild(outerContainer);
 
-  const header = sidebar.querySelector("#note-header");
-  const textarea = sidebar.querySelector("#note-text");
+  // const header = outerContainer.querySelector("#note-header");
+  const textarea = outerContainer.querySelector("#note-text");
 
   // Debounced save
   const debouncedSave = debounce((text) => {
@@ -65,12 +70,14 @@ if (!document.getElementById("note-sidebar")) {
     debouncedSave(text);
   });
 
-  const clearBtn = sidebar.querySelector("#clear-note");
-  const copyBtn = sidebar.querySelector("#copy-note");
-  const toggleBtn = sidebar.querySelector("#toggle-btn");
-  const closeBtn = sidebar.querySelector("#close-btn");
-  const content = sidebar.querySelector("#note-content");
-  const footer = sidebar.querySelector("#note-footer");
+  const clearBtn = outerContainer.querySelector("#clear-note");
+  const copyBtn = outerContainer.querySelector("#copy-note");
+  const toggleBtn = outerContainer.querySelector("#toggle-btn");
+  const toggleBtnCondenseSvg = toggleBtn.querySelector("#collapse-icon");
+  const toggleBtnExpandSvg = toggleBtn.querySelector("#expand-icon");
+  const closeBtn = outerContainer.querySelector("#close-btn");
+  const content = outerContainer.querySelector("#note-content");
+  const footer = outerContainer.querySelector("#note-footer");
 
   let isCollapsed = false;
 
@@ -91,27 +98,31 @@ if (!document.getElementById("note-sidebar")) {
     if (isCollapsed) {
       content.style.display = "none";
       footer.style.display = "none";
-      sidebar.style.height = "40px";
+      outerContainer.style.height = "40px";
       // toggleBtn.textContent = "➕";
+      toggleBtnCondenseSvg.style.opacity = "0";
+      toggleBtnExpandSvg.style.opacity = "1";
     } else {
       content.style.display = "block";
       footer.style.display = "flex";
-      sidebar.style.height = "600px";
+      outerContainer.style.height = "600px";
       // toggleBtn.textContent = "➖";
+      toggleBtnCondenseSvg.style.opacity = "1";
+      toggleBtnExpandSvg.style.opacity = "0";
     }
   });
 
-  // Close sidebar
-  closeBtn.addEventListener("click", () => sidebar.remove());
+  // Close outerContainer
+  closeBtn.addEventListener("click", () => outerContainer.remove());
 
   // Drag logic
   let isDragging = false;
   let offsetX, offsetY;
 
-  header.addEventListener("mousedown", (e) => {
+  outerContainer.addEventListener("mousedown", (e) => {
     if (e.target === toggleBtn || e.target === closeBtn) return;
     isDragging = true;
-    const rect = sidebar.getBoundingClientRect();
+    const rect = outerContainer.getBoundingClientRect();
     offsetX = e.clientX - rect.left;
     offsetY = e.clientY - rect.top;
     document.body.style.userSelect = "none";
@@ -119,8 +130,8 @@ if (!document.getElementById("note-sidebar")) {
 
   document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-    sidebar.style.left = `${e.clientX - offsetX}px`;
-    sidebar.style.top = `${e.clientY - offsetY}px`;
+    outerContainer.style.left = `${e.clientX - offsetX}px`;
+    outerContainer.style.top = `${e.clientY - offsetY}px`;
   });
 
   document.addEventListener("mouseup", () => {
