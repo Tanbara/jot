@@ -92,12 +92,12 @@ if (!document.getElementById("note-sidebar")) {
       content.style.display = "none";
       footer.style.display = "none";
       sidebar.style.height = "40px";
-      toggleBtn.textContent = "➕";
+      // toggleBtn.textContent = "➕";
     } else {
       content.style.display = "block";
       footer.style.display = "flex";
       sidebar.style.height = "600px";
-      toggleBtn.textContent = "➖";
+      // toggleBtn.textContent = "➖";
     }
   });
 
