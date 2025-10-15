@@ -13,7 +13,11 @@
   },
   "web_accessible_resources": [
   {
-    "resources": ["global.css", "styles.css"],
+    "resources": [
+  "global.css",
+  "styles.css",
+  "components/button-icon/button-icon.css"
+],
     "matches": ["<all_urls>"]
   }
 ]

@@ -26,46 +26,6 @@
   align-items: center;
 }
 
-.button-icon {
-display: flex;
-flex-direction: column;
-justify-content: center;
-width: 32px;
-height: 32px;
-align-items: center;
-border-radius: 100px;
-background-color: var(--gray-100);
-transition: transform .15s cubic-bezier(.4, 0, .2, 1), background-color .15s cubic-bezier(.4, 0, .2, 1);
-}
-
-.button-icon:hover {
-  background-color: var(--gray-200);
-}
-
-.button-icon:active {
-    transform: scale(.96);
-}
-
-.button-icon-group {
-  display: flex;
-  /* vv removes cursor flash between grab and pointer vv */
-  cursor: pointer;
-  flex-direction: row;
-  gap: var(--space-8);
-}
-
-.svg-container {
-  width: 16px;
-  height: 16px;
-}
-
-.button-icon svg {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  fill: var(--gray-900);
-}
-
 #expand-icon {
   opacity: 0;
 }

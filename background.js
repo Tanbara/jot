@@ -9,7 +9,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 
     await chrome.scripting.insertCSS({
       target: { tabId: tab.id },
-      files: ["global.css", "styles.css"]
+      files: ["global.css", "styles.css", "components/button-icon/button-icon.css"]
     });
   } catch (err) {
     console.warn("Sidebar injection failed:", err.message);
